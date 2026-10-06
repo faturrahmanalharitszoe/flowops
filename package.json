@@ -1,0 +1,42 @@
+{
+  "name": "opsflow",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OpsFlow monorepo: web (React + Vite) and api (Express + Prisma).",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently --names api,web --prefix-colors blue,magenta \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run dev --workspace @opsflow/api",
+    "dev:web": "npm run dev --workspace @opsflow/web",
+    "build": "npm run build --workspace @opsflow/api && npm run build --workspace @opsflow/web",
+    "typecheck": "npm run typecheck --workspace @opsflow/api && npm run typecheck --workspace @opsflow/web",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "db:generate": "npm run prisma:generate --workspace @opsflow/api",
+    "db:migrate": "npm run prisma:migrate --workspace @opsflow/api",
+    "db:reset": "npm run prisma:reset --workspace @opsflow/api",
+    "db:studio": "npm run prisma:studio --workspace @opsflow/api",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "concurrently": "^10.0.5",
+    "eslint": "^10.12.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.9",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.71.1"
+  }
+}

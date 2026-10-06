@@ -1,0 +1,18 @@
+// OpsFlow database schema.
+//
+// Prisma ORM v7 uses the `prisma-client` generator and requires an explicit
+// `output` path. The generated client is committed to .gitignore and produced
+// by `npm run db:generate` (or automatically before `dev`/`build`/`typecheck`).
+//
+// Add domain models below as the product evolves. The initial foundation only
+// wires up connectivity and migrations.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
